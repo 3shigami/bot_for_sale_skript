@@ -8,7 +8,7 @@ import os
 import sqlite3
 import datetime
 from datetime import datetime, timedelta, date
-API_TOKEN = '6052361432:AAH2yVSkBSVVwBkyOMAQYAunzuzHPSd-1sU'
+API_TOKEN = ''
 
 import requests
 import json
@@ -65,7 +65,7 @@ def createPay(public_key, shop_id, amount):
 
 
 
-def getTransaction(secret_id='cymel4ipx3f7wzj', payments_id=0):
+def getTransaction(secret_id='', payments_id=0):
     hash_payment = hashlib.sha256(str(secret_id).encode('utf-8')).hexdigest()
     status = requests.get(f'https://sci.fropay.bar/status?id={payments_id}&secret={hash_payment}')
     return [status.json()["status"], status.json()["amount"]]
@@ -153,7 +153,7 @@ def check_stats():
 
 def create_invoice_crypto(n):
     st = n
-    Crypto = cryptopay.Crypto("152162:AAqbDF6avCjx6esipZ5EvDO4CLipKA8g0m9", testnet=False)
+    Crypto = cryptopay.Crypto("", testnet=False)
     n = n.replace("\n", '')
     n = n.split(" ")
     k = n[1]
@@ -189,7 +189,7 @@ def create_invoice_crypto(n):
 
 async def check_pay(id, call, kf):
     global paid, id_msg, id_chat
-    Crypto = cryptopay.Crypto("152162:AAqbDF6avCjx6esipZ5EvDO4CLipKA8g0m9", testnet=False)
+    Crypto = cryptopay.Crypto("", testnet=False)
     f = Crypto.getInvoices()
     k = f.get('result')
     for i in k.get("items"):
@@ -323,7 +323,7 @@ async def check_pay(id, call, kf):
 
 async def check_pay1(id, call, kf):
     global paid, id_msg, id_chat
-    Crypto = cryptopay.Crypto("152162:AAqbDF6avCjx6esipZ5EvDO4CLipKA8g0m9", testnet=False)
+    Crypto = cryptopay.Crypto("", testnet=False)
     f = Crypto.getInvoices()
     k = f.get('result')
     for i in k.get("items"):
